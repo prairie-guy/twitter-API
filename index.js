@@ -4,15 +4,12 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 require('dotenv').config();
 
-// Pass `handle` as a commandline
+// Pass in commandline arguments
 const argv = process.argv.slice(2)
-
 console.log(argv)
-
-var handle_in = argv[0];
+var handels_file = argv[0];
 var total_tweets_in =argv[1];
-// const handle = 'barackobama';
-// const total_tweets = 10;
+// End of argv
 
 async function run(handle,total_tweets) {
     const browser = await puppeteer.launch({
@@ -110,12 +107,14 @@ async function run(handle,total_tweets) {
 
 }
 
+// Read in a path name to create an array of handles
+// Loop through these evoking `run(handle, tweets_in)`
+// `handels_file` and `total_tweets` are passed in from the commandline
+// Example usage: node index handles_test.csv 20
 var fs = require('fs');
-var handels = fs.readFileSync("handles_banks.csv1","utf8").split('\n').slice(1)
+var handels = fs.readFileSync(handels_file, "utf8").split('\n').slice(1)
 console.log(handels)
-//const handles =  ["bbt"]
+
 for (h of handels){
-    run(h,100)
+    run(h, total_tweets_in)
 }
-
-
