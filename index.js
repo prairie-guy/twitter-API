@@ -110,7 +110,13 @@ async function run(handle,total_tweets) {
 
 }
 
+var fs = require('fs');
+var hands = fs.readFileSync("handles_banks.csv1").split('\n')
 
-run(handle_in,total_tweets_in)
+console.log(hands)
+const handles =  ["bbt", "bmo", "citi"]
+for (h of handles){
+    run(h,10)
+}
 
 
