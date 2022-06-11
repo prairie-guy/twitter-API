@@ -9,12 +9,12 @@ const argv = process.argv.slice(2)
 
 console.log(argv)
 
-var handle = argv[0];
-var total_tweets =argv[1];
+var handle_in = argv[0];
+var total_tweets_in =argv[1];
 // const handle = 'barackobama';
 // const total_tweets = 10;
 
-async function run() {
+async function run(handle,total_tweets) {
     const browser = await puppeteer.launch({
         headless: true
     })
@@ -109,6 +109,8 @@ async function run() {
     getTweetsAndScroll()
 
 }
-run()
+
+
+run(handle_in,total_tweets_in)
 
 
